@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_menu_inicio"
+            android:title="@string/menu_inicio" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_noticias"
+            android:icon="@drawable/ic_menu_noticias"
+            android:title="@string/menu_noticias" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_calculadora"
+            android:icon="@drawable/ic_menu_calc"
+            android:title="@string/menu_calculadora" />
+        <item
+            android:id="@+id/nav_lista_tarefas"
+            android:icon="@drawable/ic_menu_lista_tarefas"
+            android:title="@string/menu_lista_tarefas" />
+        <item
+            android:id="@+id/nav_lista_livros"
+            android:icon="@drawable/ic_menu_lista_livros"
+            android:title="@string/menu_lista_livros" />
+        <item
+            android:id="@+id/nav_media"
+            android:icon="@drawable/ic_menu_media"
+            android:title="@string/menu_media" />
     </group>
 </menu>

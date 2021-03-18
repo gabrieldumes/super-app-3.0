@@ -3,23 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_inicio">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.superapp30.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_inicio"
+        android:name="com.example.superapp30.ui.InicioFragment"
+        android:label="@string/menu_inicio"
+        tools:layout="@layout/fragment_inicio" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.superapp30.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_noticias"
+        android:name="com.example.superapp30.ui.NoticiasFragment"
+        android:label="@string/menu_noticias"
+        tools:layout="@layout/fragment_noticias" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.superapp30.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_calculadora"
+        android:name="com.example.superapp30.ui.CalculadoraFragment"
+        android:label="@string/menu_calculadora"
+        tools:layout="@layout/fragment_calculadora" />
+
+    <fragment
+        android:id="@+id/nav_lista_tarefas"
+        android:name="com.example.superapp30.ui.ListaTarefasFragment"
+        android:label="@string/menu_lista_tarefas"
+        tools:layout="@layout/fragment_lista_tarefas" />
+
+    <fragment
+        android:id="@+id/nav_lista_livros"
+        android:name="com.example.superapp30.ui.ListaLivrosFragment"
+        android:label="@string/menu_lista_livros"
+        tools:layout="@layout/fragment_lista_livros" />
+
+    <fragment
+        android:id="@+id/nav_media"
+        android:name="com.example.superapp30.ui.MediaFragment"
+        android:label="@string/menu_media"
+        tools:layout="@layout/fragment_media" />
 </navigation>
