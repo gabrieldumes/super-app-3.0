@@ -1,9 +1,10 @@
-package com.example.superapp30;
+package com.example.superapp30.activity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.superapp30.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -34,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_inicio, R.id.nav_noticias, R.id.nav_calculadora,
-                R.id.nav_lista_tarefas, R.id.nav_lista_livros, R.id.nav_media
-        )
+                R.id.nav_lista_tarefas, R.id.nav_lista_livros, R.id.nav_media)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

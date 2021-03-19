@@ -3,64 +3,63 @@ package com.example.superapp30.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.superapp30.R;
+import com.example.superapp30.adapter.AdapterNoticias;
+import com.example.superapp30.model.Noticia;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NoticiasFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class NoticiasFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerViewNoticias;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private List<Noticia> listaNoticias = new ArrayList<>();
 
-    public NoticiasFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NoticiasFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static NoticiasFragment newInstance(String param1, String param2) {
-        NoticiasFragment fragment = new NoticiasFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_noticias, container, false);
+        View view = inflater.inflate(R.layout.fragment_noticias, container, false);
+
+        recyclerViewNoticias = view.findViewById(R.id.recyclerViewNoticias);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerViewNoticias.setLayoutManager(layoutManager);
+        recyclerViewNoticias.setHasFixedSize(true);
+
+        criarNoticas();
+
+        AdapterNoticias adapter = new AdapterNoticias(listaNoticias);
+        recyclerViewNoticias.setAdapter(adapter);
+
+        return view;
+    }
+
+    public void criarNoticas() {
+        Noticia noticia = new Noticia(R.drawable.countryside, "Artigo 1: Countryside", "");
+        noticia.setArtigo(getResources().getString(R.string.noticia_countryside));
+        listaNoticias.add(noticia);
+
+        noticia = new Noticia(R.drawable.stars, "Artigo 2: Stars", "");
+        noticia.setArtigo(getResources().getString(R.string.noticia_stars));
+        listaNoticias.add(noticia);
+
+        noticia = new Noticia(R.drawable.arch, "Artigo 3: Arquitetura", "");
+        noticia.setArtigo(getResources().getString(R.string.noticia_arch));
+        listaNoticias.add(noticia);
+
+        noticia = new Noticia(R.drawable.car, "Artigo 4: Carro", "");
+        noticia.setArtigo(getResources().getString(R.string.noticia_car));
+        listaNoticias.add(noticia);
+
+        noticia = new Noticia(R.drawable.boson, "Artigo 5: Bóson", "");
+        noticia.setArtigo(getResources().getString(R.string.noticia_boson));
+        listaNoticias.add(noticia);
     }
 }
