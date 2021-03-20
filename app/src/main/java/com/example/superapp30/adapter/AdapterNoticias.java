@@ -36,6 +36,8 @@ public class AdapterNoticias extends RecyclerView.Adapter<AdapterNoticias.MyView
         holder.imagem.setImageResource(noticia.getImagem());
         holder.textTitulo.setText(noticia.getTitulo());
         holder.textArtigo.setText(noticia.getArtigo());
+        holder.textData.setText(noticia.getData());
+        holder.textAutor.setText(noticia.getAutor());
     }
 
     @Override
@@ -46,7 +48,7 @@ public class AdapterNoticias extends RecyclerView.Adapter<AdapterNoticias.MyView
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView imagem;
-        private TextView textTitulo, textArtigo;
+        private TextView textTitulo, textArtigo, textData, textAutor;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,6 +56,8 @@ public class AdapterNoticias extends RecyclerView.Adapter<AdapterNoticias.MyView
             imagem = itemView.findViewById(R.id.imageItemNoticias);
             textTitulo = itemView.findViewById(R.id.textItemTituloNoticias);
             textArtigo = itemView.findViewById(R.id.textArtigoItemNoticias);
+            textData = itemView.findViewById(R.id.textItemData);
+            textAutor = itemView.findViewById(R.id.textItemAutor);
         }
     }
 }
