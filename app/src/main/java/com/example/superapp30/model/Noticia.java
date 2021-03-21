@@ -1,6 +1,8 @@
 package com.example.superapp30.model;
 
-public class Noticia {
+import java.io.Serializable;
+
+public class Noticia implements Serializable {
 
     private int imagem;
     private String titulo, artigo, data, autor, creditoFoto;

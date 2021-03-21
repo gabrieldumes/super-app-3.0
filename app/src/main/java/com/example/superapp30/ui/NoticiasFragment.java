@@ -1,5 +1,6 @@
 package com.example.superapp30.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.superapp30.R;
+import com.example.superapp30.activity.VerNoticiaActivity;
 import com.example.superapp30.adapter.AdapterNoticias;
+import com.example.superapp30.helper.RecyclerItemClickListener;
 import com.example.superapp30.model.Noticia;
 
 import java.util.ArrayList;
@@ -33,21 +37,46 @@ public class NoticiasFragment extends Fragment {
         recyclerViewNoticias.setLayoutManager(layoutManager);
         recyclerViewNoticias.setHasFixedSize(true);
 
-        criarNoticas();
+        popularListaNoticias();
 
         AdapterNoticias adapter = new AdapterNoticias(listaNoticias);
         recyclerViewNoticias.setAdapter(adapter);
 
+        recyclerViewNoticias.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getActivity(),
+                        recyclerViewNoticias,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Intent intent = new Intent(getActivity(), VerNoticiaActivity.class);
+                                Noticia noticiaAtual = listaNoticias.get(position);
+                                intent.putExtra("noticiaAtual", noticiaAtual);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
+
         return view;
     }
 
-    public void criarNoticas() {
+    public void popularListaNoticias() {
         Noticia noticia = new Noticia(
                 R.drawable.city_nout_gons,
                 "City",
                 "",
                 "20/MAR/2021",
-                "Seth Rims",
+                "José Miranda",
                 "Nout Gons");
         noticia.setArtigo(getResources().getString(R.string.artigo_city));
         listaNoticias.add(noticia);
@@ -57,7 +86,7 @@ public class NoticiasFragment extends Fragment {
                 "Forest",
                 "",
                 "14/JUN/2020",
-                "Carol Lee",
+                "Joana Andrade",
                 "Pixabay");
         noticia.setArtigo(getResources().getString(R.string.artigo_forest));
         listaNoticias.add(noticia);
@@ -67,7 +96,7 @@ public class NoticiasFragment extends Fragment {
                 "Library",
                 "",
                 "01/SET/2019",
-                "Carol Lee",
+                "Joana Andrade",
                 "Pixabay");
         noticia.setArtigo(getResources().getString(R.string.artigo_library));
         listaNoticias.add(noticia);
@@ -77,7 +106,7 @@ public class NoticiasFragment extends Fragment {
                 "Computers",
                 "",
                 "10/FEV/2021",
-                "Seth Rims",
+                "Roberto Cunha",
                 "Pixabay");
         noticia.setArtigo(getResources().getString(R.string.artigo_computers));
         listaNoticias.add(noticia);
@@ -87,7 +116,7 @@ public class NoticiasFragment extends Fragment {
                 "Beach",
                 "",
                 "29/ABR/2020",
-                "Matthew Olsen",
+                "Maria Ferreira Lima",
                 "Alex");
         noticia.setArtigo(getResources().getString(R.string.artigo_beach));
         listaNoticias.add(noticia);
@@ -97,8 +126,8 @@ public class NoticiasFragment extends Fragment {
                 "Ads",
                 "",
                 "25/AGO/2020",
-                "Carol Lee",
-                "Matthew Olsen");
+                "José Miranda",
+                "Negative Space");
         noticia.setArtigo(getResources().getString(R.string.artigo_ads));
         listaNoticias.add(noticia);
 
@@ -107,7 +136,7 @@ public class NoticiasFragment extends Fragment {
                 "Hospital",
                 "",
                 "14/JAN/2021",
-                "Mark Thompson",
+                "Roberto Cunha",
                 "Oles Kanebckuu");
         noticia.setArtigo(getResources().getString(R.string.artigo_hospital));
         listaNoticias.add(noticia);
@@ -117,7 +146,7 @@ public class NoticiasFragment extends Fragment {
                 "Grocery Store",
                 "",
                 "08/MAR/2020",
-                "Seth Rims",
+                "Estevão Ribeiro",
                 "Pixabay");
         noticia.setArtigo(getResources().getString(R.string.artigo_grocery_store));
         listaNoticias.add(noticia);
@@ -127,7 +156,7 @@ public class NoticiasFragment extends Fragment {
                 "Garage",
                 "",
                 "01/SET/2019",
-                "Mark Thompson",
+                "Maria Ferreira Lima",
                 "Pixabay");
         noticia.setArtigo(getResources().getString(R.string.artigo_garage));
         listaNoticias.add(noticia);
