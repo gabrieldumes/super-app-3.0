@@ -1,10 +1,12 @@
 package com.example.superapp30.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
 import com.example.superapp30.R;
+import com.example.superapp30.helper.ArmazenamentoPreferencias;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -21,10 +23,17 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    private ArmazenamentoPreferencias preferencias;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        preferencias = new ArmazenamentoPreferencias(this);
+        if (preferencias.getNome().equals("Erro00x")) {
+            startActivity(new Intent(this, InicioActivity.class));
+        }
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
