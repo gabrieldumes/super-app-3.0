@@ -8,9 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="colorPrimary">#698C89</color>
-    <color name="colorPrimaryDark">#567370</color>
-    <color name="colorAccent">#8C7085</color>
+    <color name="colorPrimaryOld">#698C89</color>
+    <color name="colorPrimaryDarkOld">#567370</color>
+    <color name="colorAccentOld">#8C7085</color>
+
+    <color name="colorPrimary">#35bac1</color>
+    <color name="colorPrimaryDark">#1699a1</color>
+    <color name="colorAccent">#ed008c</color>
 
     <color name="colorWhiteOpacity">#BEFFFFFF</color>
 </resources>
