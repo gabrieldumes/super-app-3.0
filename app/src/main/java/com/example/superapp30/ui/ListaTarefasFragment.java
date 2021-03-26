@@ -1,5 +1,7 @@
 package com.example.superapp30.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,13 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.superapp30.R;
-import com.example.superapp30.activity.NovaNotaActivity;
+import com.example.superapp30.activity.NovaTarefaActivity;
 import com.example.superapp30.adapter.AdapterTarefas;
 import com.example.superapp30.helper.ArmazenamentoBancoDeDados;
+import com.example.superapp30.helper.RecyclerItemClickListener;
 import com.example.superapp30.helper.Tarefa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,7 +47,7 @@ public class ListaTarefasFragment extends Fragment {
         fabAdicionarTarefa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), NovaNotaActivity.class));
+                startActivity(new Intent(getActivity(), NovaTarefaActivity.class));
             }
         });
 
@@ -51,6 +55,43 @@ public class ListaTarefasFragment extends Fragment {
         recyclerTarefas.setLayoutManager(layoutManager);
         recyclerTarefas.setHasFixedSize(true);
         recyclerTarefas.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
+
+        recyclerTarefas.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getActivity(),
+                        recyclerTarefas,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Tarefa tarefa = listaTarefas.get(position);
+                                Intent intent = new Intent(getActivity(), NovaTarefaActivity.class);
+                                intent.putExtra("idTarefa", tarefa.getId());
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                Tarefa tarefa = listaTarefas.get(position);
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                dialog.setTitle("Quer remover esta tarefa?");
+                                dialog.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        bancoDeDados.deleteTarefa(tarefa.getId());
+                                        Toast.makeText(getActivity(), "Tarefa excluída!", Toast.LENGTH_SHORT).show();
+                                        onStart();
+                                    }
+                                });
+                                dialog.setNegativeButton("Cancelar", null);
+                                dialog.create().show();
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
 
         return view;
     }

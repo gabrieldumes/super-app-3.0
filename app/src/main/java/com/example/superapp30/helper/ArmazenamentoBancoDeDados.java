@@ -51,4 +51,12 @@ public class ArmazenamentoBancoDeDados {
             return 0;
         }
     }
+
+    public void deleteTarefa(int id) {
+        try {
+            database.execSQL("DELETE FROM tarefas WHERE id = " + id);
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
+        }
+    }
 }

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.superapp30.R;
 import com.example.superapp30.helper.ArmazenamentoBancoDeDados;
 
-public class NovaNotaActivity extends AppCompatActivity {
+public class NovaTarefaActivity extends AppCompatActivity {
 
     private EditText editTarefa;
     private ArmazenamentoBancoDeDados bancoDeDados;
