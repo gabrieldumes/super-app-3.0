@@ -42,6 +42,27 @@ public class ArmazenamentoBancoDeDados {
         }
     }
 
+    public Tarefa getTarefaById(int id) {
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM tarefas WHERE id = " + id, null);
+            int indiceColunaId = cursor.getColumnIndex("id");
+            int indiceColunaTarefa = cursor.getColumnIndex("tarefa");
+            cursor.moveToFirst();
+            return new Tarefa(cursor.getInt(indiceColunaId), cursor.getString(indiceColunaTarefa));
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
+            return new Tarefa(-1, "Erro");
+        }
+    }
+
+    public void updateTarefa(int id, String tarefa) {
+        try {
+            database.execSQL("UPDATE tarefas SET tarefa = '" + tarefa + "' WHERE id = " + id);
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
+        }
+    }
+
     public int getQtdTarefas() {
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM tarefas", null);
