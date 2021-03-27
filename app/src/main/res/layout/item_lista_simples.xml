@@ -6,9 +6,9 @@
     android:padding="15dp">
 
     <TextView
-        android:id="@+id/textItemTarefa"
+        android:id="@+id/textItemSimples"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tarefa"
+        android:text="Item simples"
         android:textSize="18sp" />
 </LinearLayout>

@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.superapp30.R;
 import com.example.superapp30.helper.ArmazenamentoBancoDeDados;
-import com.example.superapp30.helper.Tarefa;
+import com.example.superapp30.model.Tarefa;
 
 public class NovaTarefaActivity extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class NovaTarefaActivity extends AppCompatActivity {
 
         editTarefa = findViewById(R.id.editTarefa);
 
-        bancoDeDados = new ArmazenamentoBancoDeDados(this);
+        bancoDeDados = new ArmazenamentoBancoDeDados(this, 0);
 
         try {
             Bundle dados = getIntent().getExtras();

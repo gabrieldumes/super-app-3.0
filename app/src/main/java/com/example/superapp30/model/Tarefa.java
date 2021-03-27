@@ -1,4 +1,4 @@
-package com.example.superapp30.helper;
+package com.example.superapp30.model;
 
 public class Tarefa {
 

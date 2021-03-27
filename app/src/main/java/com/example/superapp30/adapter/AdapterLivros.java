@@ -9,45 +9,44 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superapp30.R;
-import com.example.superapp30.model.Tarefa;
+import com.example.superapp30.model.Livro;
 
 import java.util.List;
 
-public class AdapterTarefas extends RecyclerView.Adapter<AdapterTarefas.MyViewHolder> {
+public class AdapterLivros extends RecyclerView.Adapter<AdapterLivros.MyViewHolder> {
 
-    private List<Tarefa> listaTarefas;
+    private List<Livro> listaLivros;
 
-    public AdapterTarefas(List<Tarefa> listaTarefas) {
-        this.listaTarefas = listaTarefas;
+    public AdapterLivros(List<Livro> listaLivros) {
+        this.listaLivros = listaLivros;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        View itemLista = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_lista_simples, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(itemLista);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Tarefa tarefa = listaTarefas.get(position);
-        holder.textTarefa.setText(tarefa.getTarefa());
+        Livro livro = listaLivros.get(position);
+        holder.textLivro.setText(livro.getLivro());
     }
 
     @Override
     public int getItemCount() {
-        return listaTarefas.size();
+        return listaLivros.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textTarefa;
+        private TextView textLivro;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            textTarefa = itemView.findViewById(R.id.textItemSimples);
+            textLivro = itemView.findViewById(R.id.textItemSimples);
         }
     }
 }

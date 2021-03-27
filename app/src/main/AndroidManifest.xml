@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_super_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperApp30">
-        <activity android:name=".activity.NovaTarefaActivity"></activity>
+        <activity android:name=".activity.NovoLivroActivity"></activity>
+        <activity android:name=".activity.NovaTarefaActivity" />
         <activity android:name=".activity.InicioActivity" />
         <activity android:name=".activity.VerNoticiaActivity" />
         <activity

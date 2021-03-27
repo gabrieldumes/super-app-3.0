@@ -22,7 +22,7 @@ import com.example.superapp30.activity.NovaTarefaActivity;
 import com.example.superapp30.adapter.AdapterTarefas;
 import com.example.superapp30.helper.ArmazenamentoBancoDeDados;
 import com.example.superapp30.helper.RecyclerItemClickListener;
-import com.example.superapp30.helper.Tarefa;
+import com.example.superapp30.model.Tarefa;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class ListaTarefasFragment extends Fragment {
         fabAdicionarTarefa = view.findViewById(R.id.fabAdicionarTarefa);
         recyclerTarefas = view.findViewById(R.id.recyclerTarefas);
 
-        bancoDeDados = new ArmazenamentoBancoDeDados(getActivity());
+        bancoDeDados = new ArmazenamentoBancoDeDados(getActivity(), 0);
 
         fabAdicionarTarefa.setOnClickListener(new View.OnClickListener() {
             @Override
