@@ -11,12 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import com.example.superapp30.R;
 import com.example.superapp30.activity.NovoLivroActivity;
 import com.example.superapp30.adapter.AdapterLivros;
 import com.example.superapp30.helper.ArmazenamentoBancoDeDados;
+import com.example.superapp30.helper.RecyclerItemClickListener;
 import com.example.superapp30.model.Livro;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -54,6 +56,31 @@ public class ListaLivrosFragment extends Fragment {
 
         recyclerLivros.setHasFixedSize(true);
         recyclerLivros.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.VERTICAL));
+
+        recyclerLivros.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getActivity(),
+                        recyclerLivros,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Livro livro = listaLivros.get(position);
+                                Intent intent = new Intent(getActivity(), NovoLivroActivity.class);
+                                intent.putExtra("idLivro", livro.getId());
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                //
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                ));
 
         return view;
     }

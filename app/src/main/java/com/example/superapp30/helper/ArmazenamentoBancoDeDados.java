@@ -112,6 +112,19 @@ public class ArmazenamentoBancoDeDados {
         }
     }
 
+    public Livro getLivroById(int id) {
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM livros WHERE id = " + id, null);
+            int indiceColunaId = cursor.getColumnIndex("id");
+            int indiceColunaLivro = cursor.getColumnIndex("livro");
+            cursor.moveToFirst();
+            return new Livro(cursor.getInt(indiceColunaId), cursor.getString(indiceColunaLivro));
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
+            return new Livro(-1, "Erro");
+        }
+    }
+
     public int getQtdLivros() {
         try {
             Cursor cursor = database.rawQuery("SELECT * FROM livros", null);
@@ -119,6 +132,14 @@ public class ArmazenamentoBancoDeDados {
         } catch (Exception e) {
             Log.i("INSETO", e.getMessage());
             return 0;
+        }
+    }
+
+    public void updateLivro(int id, String livro) {
+        try {
+            database.execSQL("UPDATE livros SET livro = '" + livro + "' WHERE id = " + id);
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
         }
     }
 }
