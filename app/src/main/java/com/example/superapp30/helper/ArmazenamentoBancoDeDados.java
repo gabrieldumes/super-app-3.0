@@ -142,4 +142,12 @@ public class ArmazenamentoBancoDeDados {
             Log.i("INSETO", e.getMessage());
         }
     }
+
+    public void deleteLivro(int id) {
+        try {
+            database.execSQL("DELETE FROM livros WHERE id = " + id);
+        } catch (Exception e) {
+            Log.i("INSETO", e.getMessage());
+        }
+    }
 }

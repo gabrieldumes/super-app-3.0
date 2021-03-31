@@ -1,5 +1,7 @@
 package com.example.superapp30.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.superapp30.R;
 import com.example.superapp30.activity.NovoLivroActivity;
@@ -72,7 +75,19 @@ public class ListaLivrosFragment extends Fragment {
 
                             @Override
                             public void onLongItemClick(View view, int position) {
-                                //
+                                Livro livro = listaLivros.get(position);
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                                dialog.setTitle("Quer remover este livro?");
+                                dialog.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        bancoDeDados.deleteLivro(livro.getId());
+                                        Toast.makeText(getActivity(), "Livro removido!", Toast.LENGTH_SHORT).show();
+                                        onStart();
+                                    }
+                                });
+                                dialog.setNegativeButton("Cancelar", null);
+                                dialog.create().show();
                             }
 
                             @Override
@@ -81,7 +96,6 @@ public class ListaLivrosFragment extends Fragment {
                             }
                         }
                 ));
-
         return view;
     }
 

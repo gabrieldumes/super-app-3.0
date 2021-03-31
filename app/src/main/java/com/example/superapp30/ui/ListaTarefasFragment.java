@@ -74,11 +74,11 @@ public class ListaTarefasFragment extends Fragment {
                                 Tarefa tarefa = listaTarefas.get(position);
                                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                                 dialog.setTitle("Quer remover esta tarefa?");
-                                dialog.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
+                                dialog.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         bancoDeDados.deleteTarefa(tarefa.getId());
-                                        Toast.makeText(getActivity(), "Tarefa excluída!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Tarefa removida!", Toast.LENGTH_SHORT).show();
                                         onStart();
                                     }
                                 });
