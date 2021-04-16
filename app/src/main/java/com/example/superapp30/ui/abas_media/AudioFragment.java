@@ -45,11 +45,13 @@ public class AudioFragment extends Fragment {
                 if (mediaPlayer != null) {
                     if (mediaPlayer.isPlaying()) {
                         mediaPlayer.pause();
-                        buttonPlayPause.setText("Play");
+                        buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.play));
+                        //buttonPlayPause.setText("Play");
                         textStatusPlayer.setText("Pausado");
                     } else {
                         mediaPlayer.start();
-                        buttonPlayPause.setText("Pause");
+                        buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.pause));
+                        //buttonPlayPause.setText("Pause");
                         textStatusPlayer.setText("Em execução");
                     }
                 }
@@ -63,7 +65,8 @@ public class AudioFragment extends Fragment {
                     mediaPlayer.stop();
                     mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bensound_erf_short);
                     textStatusPlayer.setText("Pressione o play para iniciar");
-                    buttonPlayPause.setText("Play");
+                    buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.play));
+                    //buttonPlayPause.setText("Play");
                 }
             }
         });

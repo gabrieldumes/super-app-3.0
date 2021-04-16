@@ -10,18 +10,19 @@
         android:id="@+id/textPlayerStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="32dp"
         android:text="Pressione o play para iniciar"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPlayPause"
+        app:layout_constraintBottom_toTopOf="@+id/seekProgresso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/buttonVolume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Volume"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/volume"
         app:layout_constraintBottom_toBottomOf="@+id/buttonPlayPause"
         app:layout_constraintEnd_toStartOf="@+id/buttonPlayPause"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,9 +32,9 @@
 
     <Button
         android:id="@+id/buttonStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/stop"
         app:layout_constraintBottom_toBottomOf="@+id/buttonPlayPause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -42,19 +43,17 @@
 
     <Button
         android:id="@+id/buttonPlayPause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Play"
+        android:background="@drawable/play"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonStop"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonVolume"
-        app:layout_constraintTop_toBottomOf="@+id/textPlayerStatus" />
+        app:layout_constraintTop_toBottomOf="@+id/seekProgresso" />
 
     <SeekBar
         android:id="@+id/seekVolume"
@@ -75,5 +74,30 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/music_note"
+        app:layout_constraintBottom_toTopOf="@+id/textPlayerStatus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <SeekBar
+        android:id="@+id/seekProgresso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlayPause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPlayerStatus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
