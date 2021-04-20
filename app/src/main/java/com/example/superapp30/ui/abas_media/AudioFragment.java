@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,16 @@ public class AudioFragment extends Fragment {
 
     private Button buttonVolume, buttonPlayPause, buttonStop;
     private TextView textStatusPlayer;
-    private SeekBar seekVolume;
+    private SeekBar seekVolume, seekProgresso;
 
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
+
+    private Handler seekBarHandler;
+    private Runnable seekBarRunnable;
+
+    private boolean fromUserC = false;
+    private boolean seekPressionado = false;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -34,10 +41,46 @@ public class AudioFragment extends Fragment {
         buttonStop = view.findViewById(R.id.buttonStop);
         textStatusPlayer = view.findViewById(R.id.textPlayerStatus);
         seekVolume = view.findViewById(R.id.seekVolume);
+        seekProgresso = view.findViewById(R.id.seekProgresso);
 
         seekVolume.setVisibility(View.INVISIBLE);
 
         mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bensound_erf_short);
+
+        seekProgresso.setMax(mediaPlayer.getDuration());
+
+        seekBarHandler = new Handler();
+        seekBarRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (!seekPressionado) {
+                    seekProgresso.setProgress(mediaPlayer.getCurrentPosition());
+                }
+                seekBarHandler.postDelayed(this, 1);
+            }
+        };
+
+        seekProgresso.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    fromUserC = true;
+                } else {
+                    fromUserC = false;
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                seekPressionado = true;
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if (fromUserC) mediaPlayer.seekTo(seekProgresso.getProgress());
+                seekPressionado = false;
+            }
+        });
 
         buttonPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,11 +91,13 @@ public class AudioFragment extends Fragment {
                         buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.play));
                         //buttonPlayPause.setText("Play");
                         textStatusPlayer.setText("Pausado");
+                        seekBarHandler.removeCallbacks(seekBarRunnable);
                     } else {
                         mediaPlayer.start();
                         buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.pause));
                         //buttonPlayPause.setText("Pause");
                         textStatusPlayer.setText("Em execução");
+                        seekBarHandler.postDelayed(seekBarRunnable, 0);
                     }
                 }
             }
@@ -66,6 +111,7 @@ public class AudioFragment extends Fragment {
                     mediaPlayer = MediaPlayer.create(getActivity(), R.raw.bensound_erf_short);
                     textStatusPlayer.setText("Pressione o play para iniciar");
                     buttonPlayPause.setBackground(getResources().getDrawable(R.drawable.play));
+                    seekProgresso.setProgress(0);
                     //buttonPlayPause.setText("Play");
                 }
             }
